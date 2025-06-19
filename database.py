@@ -2,10 +2,10 @@ import mysql.connector
 
 def get_connection():
     return mysql.connector.connect(
-        host="sql7.freesqldatabase.com",
-        user="sql7785733",
-        password="lxBTJzfhbh",
-        database="sql7785733",
+        host="dinik21.mysql.pythonanywhere-services.com",#"sql7.freesqldatabase.com",
+        user="dinik21",#"sql7785733",
+        password="Zidane21_mysql",#"lxBTJzfhbh",
+        database="dinik21$default",#"sql7785733",
         port=3306
     )
 
