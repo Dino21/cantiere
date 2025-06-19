@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestione Cantieri</title>
+</head>
+<body>
+    <h1>Cantieri</h1>
+    <form method="post">
+        <input type="text" name="nome" placeholder="Nome Cantiere" required>
+        <input type="text" name="paese" placeholder="Città Cantiere" required>
+        <input type="text" name="indirizzo" placeholder="Indirizzo Cantiere">
+        <button type="submit">Aggiungi</button>
+    </form>
+    <ul>
+        {% for id, nome, paese, indirizzo in cantieri %}
+            <li>
+                {{ nome }} - {{ paese }} - {{ indirizzo }}
+                <a href="/cantieri/modifica/{{ id }}">✏️</a>
+                <a href="/cantieri/elimina/{{ id }}" onclick="return confirm('Sei sicuro di voler eliminare {{ nome }}?')">🗑️</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/lavoratori">Vai a Lavoratori</a>
+    <a href="/">Vai alla pagina principale</a>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifica Presenza</title>
+</head>
+<body>
+    <h1>Modifica Presenza</h1>
+    <form method="post">
+        <label>Data:</label>
+        <input type="date" name="data" value="{{ presenza[1] }}" required><br>
+
+        <label>Lavoratore:</label>
+        <select name="lavoratore_id" required>
+            {% for id, nome, ruolo in lavoratori %}
+                <option value="{{ id }}" {% if id == presenza[2] %}selected{% endif %}>{{ nome }} - {{ ruolo }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Cantiere:</label>
+        <select name="cantiere_id" required>
+            {% for id, nome, paese, indirizzo in cantieri %}
+                <option value="{{ id }}" {% if id == presenza[3] %}selected{% endif %}>{{ nome }} - {{ paese }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Ore lavorate:</label>
+        <input type="number" name="ore" min="0" step="0.25" value="{{ presenza[4] }}" required><br>
+
+        <label>Descrizione:</label>
+        <textarea name="descrizione">{{ presenza[5] }}</textarea><br>
+
+        <button type="submit">Salva modifiche</button>
+    </form>
+    <a href="/presenze">← Torna alle presenze</a>
+</body>
+</html>

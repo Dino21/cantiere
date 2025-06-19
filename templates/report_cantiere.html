@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report Dettagliato Cantiere</title>
+</head>
+<body>
+    <h1>Report Cantiere: {{ nome_cantiere }}</h1>
+    <form method="post">
+        <select name="cantiere_id" required>
+            <option value="" disabled selected>Seleziona cantiere</option>
+            {% for id, nome, paese, indirizzo in cantieri %}
+                <option value="{{ id }}">{{ nome }} - {{ paese }}</option>
+            {% endfor %}
+        </select>
+        <label>Data Inizio:</label>
+        <input type="date" name="data_inizio" required>
+        <label>Data Fine:</label>
+        <input type="date" name="data_fine" required>
+        <button type="submit">Genera Report</button>
+    </form>
+    {% if totale %}
+    <form action="/report/cantiere/export" method="post">
+        <input type="hidden" name="cantiere_id" value="{{ request.form.cantiere_id }}">
+        <input type="hidden" name="data_inizio" value="{{ request.form.data_inizio }}">
+        <input type="hidden" name="data_fine" value="{{ request.form.data_fine }}">
+        <button type="submit">Esporta CSV</button>
+    </form>
+    {% endif %}
+    {% if totale %}
+        <h2>Ore Totali: {{ totale }}</h2>
+        <h3>Ore per Lavoratore:</h3>
+        <table border="1">
+            <tr><th>Lavoratore</th><th>Ruolo</th><th>Ore</th></tr>
+            {% for nome, ruolo, ore in dettaglio %}
+                <tr><td>{{ nome }}</td><td>{{ ruolo }}</td><td>{{ ore }}</td></tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <a href="/">← Torna alla home</a>
+</body>
+</html>

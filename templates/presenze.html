@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registra Presenza</title>
+</head>
+<body>
+    <h1>Registra Presenza</h1>
+    <form method="post">
+        <label>Data:</label>
+        <input type="date" name="data" required><br>
+
+        <label>Lavoratore:</label>
+        <select name="lavoratore_id" required>
+            {% for id, nome, ruolo in lavoratori %}
+                <option value="{{ id }}">{{ nome }} - {{ ruolo }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Cantiere:</label>
+        <select name="cantiere_id" required>
+            {% for id, nome, paese, indirizzo in cantieri %}
+                <option value="{{ id }}">{{ nome }} - {{ paese }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Ore lavorate:</label>
+        <input type="number" name="ore" min="0" step="0.25" required><br>
+
+        <label>Descrizione:</label>
+        <textarea name="descrizione"></textarea><br>
+
+        <button type="submit">Salva</button>
+    </form>
+    <h2>Elenco Presenze</h2>
+<table border="1">
+    <tr>
+        <th>Data</th>
+        <th>Lavoratore</th>
+        <th>Cantiere</th>
+        <th>Ore</th>
+        <th>Descrizione</th>
+        <th>Azioni</th>
+    </tr>
+    {% for id, data, nome_lav, nome_cant, ore, descrizione in presenze %}
+    <tr>
+        <td>{{ data }}</td>
+        <td>{{ nome_lav }}</td>
+        <td>{{ nome_cant }}</td>
+        <td>{{ ore }}</td>
+        <td>{{ descrizione }}</td>
+        <td>
+            <a href="/presenze/modifica/{{ id }}">✏️</a>
+            <a href="/presenze/elimina/{{ id }}" onclick="return confirm('Sei sicuro di eliminare questa presenza?')">🗑️</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+    <a href="/">← Torna alla Home</a>
+</body>
+</html>

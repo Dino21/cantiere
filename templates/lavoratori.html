@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestione Lavoratori</title>
+</head>
+<body>
+    <h1>Lavoratori</h1>
+    <form method="post">
+        <input type="text" name="nome" placeholder="Nome lavoratore" required>
+        <select name="ruolo" required>
+            <option value="" disabled selected>Seleziona ruolo</option>
+            {% for ruolo in ruoli %}
+                <option value="{{ ruolo }}">{{ ruolo }}</option>
+            {% endfor %}
+
+        </select>
+        <button type="submit">Aggiungi</button>
+    </form>
+    <ul>
+        {% for id, nome, ruolo in lavoratori %}
+            <li>
+                {{ nome }} - {{ ruolo }}
+                <a href="/lavoratori/modifica/{{ id }}">✏️</a>
+                <a href="/lavoratori/elimina/{{ id }}" onclick="return confirm('Sei sicuro di voler eliminare {{ nome }}?')">🗑️</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/cantieri">Vai a Cantieri</a>
+    <a href="/">Vai alla pagina principale</a>
+</body>
+</html>

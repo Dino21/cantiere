@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifica Lavoratore</title>
+</head>
+<body>
+    <h1>Modifica Lavoratore</h1>
+    <form method="post">
+        <input type="text" name="nome" value="{{ lavoratore[1] }}" required>
+        <select name="ruolo" required>
+            {% for ruolo in ruoli %}
+                <option value="{{ ruolo }}" {% if ruolo == lavoratore[2] %}selected{% endif %}>
+                    {{ ruolo }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Salva modifiche</button>
+    </form>
+    <a href="/lavoratori">← Torna alla lista</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifica Cantiere</title>
+</head>
+<body>
+    <h1>Modifica Cantiere</h1>
+    <form method="post">
+        <input type="text" name="nome" value="{{ cantiere[1] }}" required>
+        <input type="text" name="paese" value="{{ cantiere[2] }}" required>
+        <input type="text" name="indirizzo" value="{{ cantiere[3] }}" required>
+        <button type="submit">Salva modifiche</button>
+    </form>
+    <a href="/cantieri">← Torna alla lista</a>
+</body>
+</html>
